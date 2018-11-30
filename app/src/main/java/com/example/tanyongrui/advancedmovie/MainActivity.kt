@@ -1,5 +1,5 @@
 //Update your package here
-package com.example.tanyongrui.intermediatemovie
+package com.example.tanyongrui.advancedmovie
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity

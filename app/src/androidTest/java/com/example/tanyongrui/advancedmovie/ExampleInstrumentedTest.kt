@@ -1,4 +1,4 @@
-package com.example.tanyongrui.intermediatemovie
+package com.example.tanyongrui.advancedmovie
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

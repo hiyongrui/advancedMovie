@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.tanyongrui.intermediatemovie">
+          package="com.example.tanyongrui.advancedmovie">
 
     <application
             android:allowBackup="true"
@@ -11,7 +11,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.tanyongrui.advancedmovie.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,17 +19,17 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".AddMovieActivity"
-                android:parentActivityName=".MainActivity">
+                android:name="com.example.tanyongrui.advancedmovie.AddMovieActivity"
+                android:parentActivityName="com.example.tanyongrui.advancedmovie.MainActivity">
         </activity>
         <activity
-                android:name=".ViewMovieActivity"
-                android:parentActivityName=".MainActivity">
+                android:name="com.example.tanyongrui.advancedmovie.ViewMovieActivity"
+                android:parentActivityName="com.example.tanyongrui.advancedmovie.MainActivity">
         </activity>
-        <activity android:name=".RateMovieActivity">
+        <activity android:name="com.example.tanyongrui.advancedmovie.RateMovieActivity">
         </activity>
 
-        <activity android:name=".EditMovieActivity">
+        <activity android:name="com.example.tanyongrui.advancedmovie.EditMovieActivity">
         </activity>
     </application>
 

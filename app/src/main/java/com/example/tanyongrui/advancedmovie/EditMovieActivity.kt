@@ -1,4 +1,4 @@
-package com.example.tanyongrui.intermediatemovie
+package com.example.tanyongrui.advancedmovie
 
 import android.content.Intent
 import android.os.Bundle

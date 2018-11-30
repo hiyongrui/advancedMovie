@@ -1,4 +1,4 @@
-package com.example.tanyongrui.intermediatemovie
+package com.example.tanyongrui.advancedmovie
 
 import org.junit.Test
 
