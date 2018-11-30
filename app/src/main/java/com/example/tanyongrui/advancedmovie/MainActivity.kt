@@ -8,6 +8,8 @@ import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
     //In onContextItemSelected,
     // - when the itemId 1001 is selected, end the activity by calling the finish()
 
+    lateinit var listView: ListView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         //register the menu from main.xml into activity_main.xml
         // since this MainActivity kotlin is for activity_main.xml
         registerForContextMenu(landingPageText) //match id of text in order for pop up to work
+
+        listView = findViewById(R.id.listViewOfMovies)
+        var personArray = arrayOf("oaoa","sax","noted","k")
+        listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, personArray)
 
     }
 
