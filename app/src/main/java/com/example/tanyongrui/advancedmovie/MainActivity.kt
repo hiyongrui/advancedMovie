@@ -2,8 +2,8 @@
 package com.example.tanyongrui.advancedmovie
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -64,6 +63,9 @@ class MainActivity : AppCompatActivity() {
         //var personArray = arrayOf("oaoa","sax","noted","k")
         //TODO 666: once added movie object, add object to array to display on adapter
         // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
+
+        
+
         personArray.add("avengers")
         personArray.add("ok2nd")
         personArray.add("noted")
@@ -73,7 +75,9 @@ class MainActivity : AppCompatActivity() {
                     personArray
         )
 
+        Log.e("array person --- ", "==========  " + personArray)
         listViewOfMovies.adapter = newAdapter
+
     }
 
 
