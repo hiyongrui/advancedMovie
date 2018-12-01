@@ -18,6 +18,8 @@ class ViewMovieActivity : AppCompatActivity() {
 
         registerForContextMenu(reviewText)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) //code for back button to display, or use manifest
+
         /*
         val p = MovieEntity()
         //p.title = "title of the movie...."
@@ -58,6 +60,18 @@ class ViewMovieActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        //TODO last, once if item?.ItemId == press back button R.id.home, put object into intent
+        // TODO set result back to main activity page, call finish() and add to global array in main
+        Log.e("on option item seleced!!", "!!!!!!!!!!")
+        if (item?.itemId == android.R.id.home) {
+            Log.e("on option selected item HOME!!", "22222222")
+            val sendToMain = intent.getSerializableExtra("callThisShit") as MovieEntity
+            val sendMainIntent = Intent(this, AddMovieActivity::class.java)
+            sendMainIntent.putExtra("lastObject",sendToMain)
+            setResult(111,sendMainIntent)
+            finish()
+        }
 
         if (item?.itemId == R.id.edit) {
             val editMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity

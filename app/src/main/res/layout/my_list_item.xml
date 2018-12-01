@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:id="@+id/imageViewPicture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/moviepicture">
+        </ImageView>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1st text:"
+                android:id="@+id/imageText1"
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2nd text:"
+                android:id="@+id/imageText2"
+        />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3rd text:"
+                android:id="@+id/imageText3"
+        />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
