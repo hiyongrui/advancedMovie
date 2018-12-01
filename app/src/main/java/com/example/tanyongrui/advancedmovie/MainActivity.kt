@@ -64,8 +64,8 @@ class MainActivity : AppCompatActivity() {
         //TODO 666: once added movie object, add object to array to display on adapter
         // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
 
-        
 
+        
         personArray.add("avengers")
         personArray.add("ok2nd")
         personArray.add("noted")
