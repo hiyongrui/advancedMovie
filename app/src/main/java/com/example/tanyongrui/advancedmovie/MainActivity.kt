@@ -65,10 +65,11 @@ class MainActivity : AppCompatActivity() {
         // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
 
 
-        
         personArray.add("avengers")
         personArray.add("ok2nd")
         personArray.add("noted")
+        personArray.add("hello")
+        
         val newAdapter = ArrayAdapter<String>(
             this,
                     android.R.layout.simple_list_item_1,
