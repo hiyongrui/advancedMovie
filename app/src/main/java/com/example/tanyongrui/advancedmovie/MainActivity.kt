@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     var personArray: MutableList<String> = ArrayList()
     //var listGlobal = mutableListOf<Persons>()
     var listGlobal = mutableListOf<MovieEntity>()
+    var titleToChange = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,10 +108,10 @@ class MainActivity : AppCompatActivity() {
         val name = listGlobal[listPosition]
         Toast.makeText(this,"hi +  ${name.title}", Toast.LENGTH_LONG).show()
         Log.e("selected adapter item !!! ", "item object =\n" + name)
-
+        titleToChange = name.title
         val editIntent = Intent(this, EditMovieActivity::class.java)
         editIntent.putExtra("editMovieObj", name)
-        startActivity(editIntent)
+        startActivityForResult(editIntent, 222)
         Log.e("from main activity passing over edit object...", "editing@@@@@@@@@@")
         return super.onContextItemSelected(item)
     }
@@ -178,7 +179,32 @@ class MainActivity : AppCompatActivity() {
             listView.adapter = adapter
         }
 
-    }
+        if (requestCode == 222 && resultCode == 309) {
+            Log.e("hello 222 111 its working", "data-???")
+            val savedOBJ = data!!.getSerializableExtra("backToMainFromEdit") as MovieEntity
+            Log.e("finally back from edit???????. ",
+                "saved object is\n" + savedOBJ.toString())
+
+            listView = findViewById(R.id.listViewOfMovies)
+            //TODO object added below should be in onActivityResult
+            for (i in 0 until listGlobal.size) {
+                Log.e("before change", "object below\n = " + listGlobal[i].title)
+            }
+            for (i in 0 until listGlobal.size) {
+                Log.e("object list", listGlobal.toString())
+                if (listGlobal[i].title == titleToChange) {
+                    listGlobal[i] = savedOBJ
+                }
+            }
+            for (i in 0 until listGlobal.size) {
+                Log.e("after change", "bobject below\n @ " + listGlobal[i].title)
+            }
+
+            val adapter = MyListAdapter(this, R.layout.my_list_item, listGlobal) //params = context, layout id, list of data
+            // maps the array of object to the custom adapter list view
+            listView.adapter = adapter
+        }
+    } //end of onActivityResult
 
 
 }

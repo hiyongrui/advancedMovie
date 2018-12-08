@@ -93,17 +93,17 @@ class EditMovieActivity : AppCompatActivity() {
                 val suitableYesOrNo = checkSuitableForChildren()
 
                 val savingEditedMovieObj = intent.getSerializableExtra("editMovieObj") as MovieEntity
-                Log.e("saving intent now back to view movie", "saving@@@@@@@@@@")
+                Log.e("saving intent going back to view movie", "saving@@@@@@@@@@")
                 savingEditedMovieObj.title = editNameOfMovie.text.toString()
                 savingEditedMovieObj.overview = editDescription.text.toString()
                 savingEditedMovieObj.releaseDate = editReleaseDate.text.toString()
                 savingEditedMovieObj.language = radioButtonText
                 savingEditedMovieObj.suitableAge = suitableYesOrNo
                 val myIntent = Intent(this, ViewMovieActivity::class.java)
-                myIntent.putExtra("editedObj", savingEditedMovieObj)
-                //startActivity(myIntent)
-                setResult(889, myIntent) // set data to be given back to viewMovie
-                finish()
+                myIntent.putExtra("callThisShit", savingEditedMovieObj) //"editedObj"
+                startActivityForResult(myIntent, 222)
+                //setResult(889, myIntent) // set data to be given back to viewMovie
+                //finish()
             }
         }
 
@@ -160,4 +160,17 @@ class EditMovieActivity : AppCompatActivity() {
         return radioButtonText
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("inside on activit result EDIT MOVIE going back", "to main activity @@@@ \n" + data)
+
+        if (resultCode == 111) {
+            val rateMovieObj = data!!.getSerializableExtra("lastObject") as MovieEntity
+            Log.e("going back to main from VIEW  ", "YOOOOOOOO \n " + rateMovieObj.toString())
+            val sendMainIntent = Intent(this, MainActivity::class.java)
+            sendMainIntent.putExtra("backToMainFromEdit",rateMovieObj)
+            setResult(309,sendMainIntent)
+            finish()
+        }
+    }
 }

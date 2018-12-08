@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_view_movie.*
 
 class ViewMovieActivity : AppCompatActivity() {
 
-    var editMovieObjPass = MovieEntity()
+    var receivedMovieObj = MovieEntity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class ViewMovieActivity : AppCompatActivity() {
             suitableAgeText.text = "No"
         }
         */
-        val receivedMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity
+        receivedMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity
         titleMovieText.text = receivedMovieObj.title
         overviewText.text = receivedMovieObj.overview
         languageText.text = receivedMovieObj.language
@@ -69,10 +69,10 @@ class ViewMovieActivity : AppCompatActivity() {
         Log.e("on option item seleced!!", "!!!!!!!!!!")
         if (item?.itemId == android.R.id.home) {
             Log.e("on option selected item HOME!!", "22222222")
-            Log.e("global variable object string\n", editMovieObjPass.toString())
+            Log.e("global variable object string", receivedMovieObj.toString())
             //val sendToMain = intent.getSerializableExtra("callThisShit") as MovieEntity //callthisShit
             val sendMainIntent = Intent(this, AddMovieActivity::class.java)
-            sendMainIntent.putExtra("lastObject",editMovieObjPass)
+            sendMainIntent.putExtra("lastObject",receivedMovieObj) //editMovieObjPass
             setResult(111,sendMainIntent)
             finish() //back to add activity, which will finish() to main activity page
         }
@@ -126,6 +126,7 @@ class ViewMovieActivity : AppCompatActivity() {
 
         }
 
+        /*
         // edit movie
         if (resultCode == 889 && requestCode == 888) {
             Log.e("inside 889 and 888", "inside===============")
@@ -136,6 +137,7 @@ class ViewMovieActivity : AppCompatActivity() {
             languageText.text = editMovieObjPass.language
             suitableAgeText.text = editMovieObjPass.suitableAge
         }
+        */
     }
 
 }
