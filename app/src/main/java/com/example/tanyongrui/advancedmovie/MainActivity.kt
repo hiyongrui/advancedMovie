@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //once add text is press, function logic below
+    //once add popup text is press, function logic below
     override fun onContextItemSelected(item: MenuItem?): Boolean {
 
         if (item?.itemId == 1001) {
@@ -127,15 +127,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         Log.e("system 11111111 no item", "no item")
-        if (v?.id == R.id.landingPageText) {
-            Log.e("system error no 22222222", "no item")
-            menu?.add(1,1001,1,"Add")
-        }
 
         if (v?.id == R.id.listViewOfMovies) {
             Log.e("list selected edit", "edit@@@m")
             menu?.add(1, v.id,2,"Edit")
-        }
+        } //v.id or 1001 = itemid
 
     }
 
@@ -150,16 +146,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         //TODO 888 put "Add" at the top of the menu, start intent to add movie page:
         //TODO once added movie, object added to global array, pass back from view movie
-        if (item?.itemId == R.id.miRefresh) {
-            landingPageText.text = "Refresheddd"
-            Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show()
+        if (item?.itemId == R.id.addMovieFromHome) {
             var myIntent = Intent(this, AddMovieActivity::class.java)
             //startActivity(myIntent)
             startActivityForResult(myIntent,10)
-        }
-        else if (item?.itemId == R.id.miLogoff) {
-            landingPageText.text = "Logged333 off"
-            Toast.makeText(this, "Loggg55ed off", Toast.LENGTH_SHORT).show()
         }
 
         return super.onOptionsItemSelected(item)
@@ -174,9 +164,10 @@ class MainActivity : AppCompatActivity() {
             val backOBJ = data!!.getSerializableExtra("backToMain") as MovieEntity
             Log.e("1st screen data from view movie... ",
                 "data passed back from last screen@@@@ \n" + backOBJ.toString())
-
         }
+
     }
+
 
 }
 
