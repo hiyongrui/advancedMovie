@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
         if (v?.id == R.id.listViewOfMovies) {
             Log.e("list selected edit", "edit@@@m")
-            menu?.add(1, v.id,2,"Edit")
+            menu?.add(1, v.id,1,"Edit")
         } //v.id or 1001 = itemid
 
     }
@@ -156,6 +156,26 @@ class MainActivity : AppCompatActivity() {
             val backOBJ = data!!.getSerializableExtra("backToMain") as MovieEntity
             Log.e("1st screen data from view movie... ",
                 "data passed back from last screen@@@@ \n" + backOBJ.toString())
+
+            //TODO 666: once added movie object, add object to array to display on adapter
+            // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
+
+            listView = findViewById(R.id.listViewOfMovies)
+            //TODO object added below should be in onActivityResult
+            /*
+            listGlobal.add(Persons("Peter","Tan","111", R.drawable.moviepicture))
+            listGlobal.add(Persons("Nihao ","Kool","222", R.drawable.moviepicture))
+            listGlobal.add(Persons("John","Doe","333", R.drawable.moviepicture))
+            */
+            //listGlobal.add(MovieEntity("Peter","Tan","111","hello","lol"))
+            listGlobal.add(backOBJ)
+            for (i in 0 until listGlobal.size) {
+                Log.e("list", "persons dynamic below\n name = " + listGlobal[i].title)
+            }
+
+            val adapter = MyListAdapter(this, R.layout.my_list_item, listGlobal) //params = context, layout id, list of data
+            // maps the array of object to the custom adapter list view
+            listView.adapter = adapter
         }
 
     }
