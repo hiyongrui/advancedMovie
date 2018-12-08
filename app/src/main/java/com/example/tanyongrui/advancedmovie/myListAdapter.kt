@@ -1,6 +1,7 @@
 package com.example.tanyongrui.advancedmovie
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<Persons>)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         //layout inflator get dynamic View object that is defined from my_list_item.xml
+        //TODO maybe check if an existing view is being reused, otherwise inflate view? recycle? or use viewholder if too much data
         val layoutInflator: LayoutInflater = LayoutInflater.from(mCtx)
 
         val view:View = layoutInflator.inflate(resource,null) // .inflate create view object from xml resource
@@ -35,10 +37,14 @@ class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<Persons>)
         val person: Persons = items[position]
 
         imageView.setImageDrawable(mCtx.resources.getDrawable(person.photo))
-        textView.text = person.firstName
-        textView1.text = person.lastName
+        // FIXME try imageView.setImageResource(person.photo) later on, right now if comment out
+        // FIXME the image view the images still display on first page, probably cos its not dynamic yet
+        // TODO this function is to dynamic change the text,image from XML to the objects added
+        textView.text = person.firstName + " "
+        textView1.text = person.lastName + " "
         textView2.text = person.address
 
+        Log.e("getView() is called", "person position --> \n " + person.firstName)
         //return super.getView(position, convertView, parent)
         return view
     }

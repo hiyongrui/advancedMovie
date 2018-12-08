@@ -70,7 +70,7 @@ class ViewMovieActivity : AppCompatActivity() {
             val sendMainIntent = Intent(this, AddMovieActivity::class.java)
             sendMainIntent.putExtra("lastObject",sendToMain)
             setResult(111,sendMainIntent)
-            finish()
+            finish() //back to add activity, which will finish() to main activity page
         }
 
         if (item?.itemId == R.id.edit) {

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -34,5 +36,7 @@
                 android:text="3rd text:"
                 android:id="@+id/imageText3"
         />
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
