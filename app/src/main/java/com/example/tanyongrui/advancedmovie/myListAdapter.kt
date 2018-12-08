@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<Persons>)
-    :ArrayAdapter<Persons>( mCtx, resource, items) {
+class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<MovieEntity>)
+    :ArrayAdapter<MovieEntity>( mCtx, resource, items) {
     //params = context, layout id, list of data
 
     //TODO create custom adapter, create class and extend the arrayadapter<Class> and
@@ -29,22 +29,20 @@ class MyListAdapter(var mCtx:Context, var resource:Int, var items:List<Persons>)
         val layoutInflator: LayoutInflater = LayoutInflater.from(mCtx)
 
         val view:View = layoutInflator.inflate(resource,null) // .inflate create view object from xml resource
-        val imageView: ImageView = view.findViewById(R.id.imageViewPicture)
+        //val imageView: ImageView = view.findViewById(R.id.imageViewPicture)
         val textView: TextView = view.findViewById(R.id.imageText1)
-        val textView1: TextView = view.findViewById(R.id.imageText2)
-        val textView2: TextView = view.findViewById(R.id.imageText3)
 
-        val person: Persons = items[position]
+        //val person: Persons = items[position]
+        val person: MovieEntity = items[position]
 
-        imageView.setImageDrawable(mCtx.resources.getDrawable(person.photo))
+        //imageView.setImageDrawable(mCtx.resources.getDrawable(person.photo))
         // FIXME try imageView.setImageResource(person.photo) later on, right now if comment out
         // FIXME the image view the images still display on first page, probably cos its not dynamic yet
         // TODO this function is to dynamic change the text,image from XML to the objects added
-        textView.text = person.firstName + " "
-        textView1.text = person.lastName + " "
-        textView2.text = person.address
 
-        Log.e("getView() is called", "person position --> \n " + person.firstName)
+        textView.text = person.title
+
+        Log.e("getView() is called", "person position --> \n " + person.title)
         //return super.getView(position, convertView, parent)
         return view
     }

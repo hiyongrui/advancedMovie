@@ -52,7 +52,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var listView: ListView
 
     var personArray: MutableList<String> = ArrayList()
-    var listGlobal = mutableListOf<Persons>()
+    //var listGlobal = mutableListOf<Persons>()
+    var listGlobal = mutableListOf<MovieEntity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -65,22 +67,7 @@ class MainActivity : AppCompatActivity() {
 
         //listView = findViewById(R.id.listViewOfMovies)
         //var personArray = arrayOf("oaoa","sax","noted","k")
-        //TODO 666: once added movie object, add object to array to display on adapter
-        // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
 
-        listView = findViewById(R.id.listViewOfMovies)
-
-        listGlobal.add(Persons("Peter","Tan","111", R.drawable.moviepicture))
-        listGlobal.add(Persons("Nihao ","Kool","222", R.drawable.moviepicture))
-        listGlobal.add(Persons("John","Doe","333", R.drawable.moviepicture))
-
-        for (i in 0 until listGlobal.size) {
-            Log.e("list", "persons dynamic below\n name = " + listGlobal[i].firstName)
-        }
-
-        val adapter = MyListAdapter(this, R.layout.my_list_item, listGlobal) //params = context, layout id, list of data
-        // maps the array of object to the custom adapter list view
-        listView.adapter = adapter
         /*
         personArray.add("avengers")
         personArray.add("ok2nd")
@@ -118,8 +105,13 @@ class MainActivity : AppCompatActivity() {
         val listPosition = info.position
         //val name = personArray[listPosition]
         val name = listGlobal[listPosition]
-        Toast.makeText(this,"hi +  ${name.firstName}", Toast.LENGTH_LONG).show()
-        Log.e("selected adapter item !!! ", "item =  " + name.firstName)
+        Toast.makeText(this,"hi +  ${name.title}", Toast.LENGTH_LONG).show()
+        Log.e("selected adapter item !!! ", "item object =\n" + name)
+
+        val editIntent = Intent(this, EditMovieActivity::class.java)
+        editIntent.putExtra("editMovieObj", name)
+        startActivity(editIntent)
+        Log.e("from main activity passing over edit object...", "editing@@@@@@@@@@")
         return super.onContextItemSelected(item)
     }
 

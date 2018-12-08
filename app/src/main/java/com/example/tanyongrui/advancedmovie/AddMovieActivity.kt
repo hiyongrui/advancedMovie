@@ -82,8 +82,8 @@ class AddMovieActivity : AppCompatActivity() {
                 val myIntent = Intent(this, ViewMovieActivity::class.java)
                 myIntent.putExtra("callThisShit", movieEntityObject)
 
-                startActivityForResult(myIntent, 10) //startactivityforresult so can finish() back to main page from view movie
-
+                startActivityForResult(myIntent, 10)
+                //startactivityforresult so can finish() back to main page from view movie
             }
         }
 

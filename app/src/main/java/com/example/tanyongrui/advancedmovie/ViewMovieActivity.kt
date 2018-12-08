@@ -41,7 +41,7 @@ class ViewMovieActivity : AppCompatActivity() {
         releaseDateText.text = receivedMovieObj.releaseDate
         suitableAgeText.text = receivedMovieObj.suitableAge
 
-        Log.e("---------below is movie entity ----- ", "------------")
+        Log.e("---------below is movie entity in view movie ----- ", "------------")
         Log.e("",receivedMovieObj.toString())
         Log.e("title of movie", titleMovieText.text.toString())
         Log.e("overview of movie ", overviewText.text.toString())
