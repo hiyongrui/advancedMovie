@@ -23,8 +23,7 @@
                 android:parentActivityName="com.example.tanyongrui.advancedmovie.MainActivity">
         </activity>
         <activity
-                android:name="com.example.tanyongrui.advancedmovie.ViewMovieActivity"
-                android:parentActivityName="com.example.tanyongrui.advancedmovie.MainActivity">
+                android:name="com.example.tanyongrui.advancedmovie.ViewMovieActivity">
         </activity>
         <activity android:name="com.example.tanyongrui.advancedmovie.RateMovieActivity">
         </activity>

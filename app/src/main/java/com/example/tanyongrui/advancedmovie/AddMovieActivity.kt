@@ -81,7 +81,9 @@ class AddMovieActivity : AppCompatActivity() {
 
                 val myIntent = Intent(this, ViewMovieActivity::class.java)
                 myIntent.putExtra("callThisShit", movieEntityObject)
-                startActivity(myIntent)
+
+                startActivityForResult(myIntent, 10) //startactivityforresult so can finish() back to main page from view movie
+
             }
         }
 
@@ -138,4 +140,17 @@ class AddMovieActivity : AppCompatActivity() {
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("inside on activit result ADD MOVIE going back", "to main activity @@@@ \n" + data)
+
+        if (resultCode == 111) {
+            val rateMovieObj = data!!.getSerializableExtra("lastObject") as MovieEntity
+            Log.e("going back to main from VIEW  ", "YOOOOOOOO \n " + rateMovieObj.toString())
+            val sendMainIntent = Intent(this, MainActivity::class.java)
+            sendMainIntent.putExtra("backToMain",rateMovieObj)
+            setResult(223,sendMainIntent)
+            finish()
+        }
+    }
 }
