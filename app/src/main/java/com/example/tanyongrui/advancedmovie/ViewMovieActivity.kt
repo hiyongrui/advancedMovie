@@ -1,6 +1,7 @@
 package com.example.tanyongrui.advancedmovie
 
 import android.content.Intent
+import android.graphics.Movie
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -11,6 +12,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_view_movie.*
 
 class ViewMovieActivity : AppCompatActivity() {
+
+    var editMovieObjPass = MovieEntity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,9 +69,10 @@ class ViewMovieActivity : AppCompatActivity() {
         Log.e("on option item seleced!!", "!!!!!!!!!!")
         if (item?.itemId == android.R.id.home) {
             Log.e("on option selected item HOME!!", "22222222")
-            val sendToMain = intent.getSerializableExtra("callThisShit") as MovieEntity
+            Log.e("global variable object string\n", editMovieObjPass.toString())
+            //val sendToMain = intent.getSerializableExtra("callThisShit") as MovieEntity //callthisShit
             val sendMainIntent = Intent(this, AddMovieActivity::class.java)
-            sendMainIntent.putExtra("lastObject",sendToMain)
+            sendMainIntent.putExtra("lastObject",editMovieObjPass)
             setResult(111,sendMainIntent)
             finish() //back to add activity, which will finish() to main activity page
         }
@@ -125,12 +129,12 @@ class ViewMovieActivity : AppCompatActivity() {
         // edit movie
         if (resultCode == 889 && requestCode == 888) {
             Log.e("inside 889 and 888", "inside===============")
-            val editMovieObj = data!!.getSerializableExtra("editedObj") as MovieEntity
-            titleMovieText.text = editMovieObj.title
-            overviewText.text = editMovieObj.overview
-            releaseDateText.text = editMovieObj.releaseDate
-            languageText.text = editMovieObj.language
-            suitableAgeText.text = editMovieObj.suitableAge
+            editMovieObjPass = data!!.getSerializableExtra("editedObj") as MovieEntity
+            titleMovieText.text = editMovieObjPass.title
+            overviewText.text = editMovieObjPass.overview
+            releaseDateText.text = editMovieObjPass.releaseDate
+            languageText.text = editMovieObjPass.language
+            suitableAgeText.text = editMovieObjPass.suitableAge
         }
     }
 
