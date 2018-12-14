@@ -214,21 +214,16 @@ class MainActivity : AppCompatActivity() {
             // maps the array of object to the custom adapter list view
             listView.adapter = adapter
         }
-        if (requestCode == 837 && resultCode == 908) {
-            Log.e("837 908", "COMING BACK LIST ITEM ");
-            var viewUpdated = intent.getSerializableExtra("okObject") as MovieEntity
-            Log.e("view updated -- " , "--- \n" + viewUpdated.toString())
-        }
-
+        
         if (resultCode == 111) {
-            val fuckObj = data!!.getSerializableExtra("lastObject") as MovieEntity
-            Log.e("gFUCK UR MOTHE@@@@@@ ", "YOOOOOOOO \n " + fuckObj.toString())
+            val fromOnlyViewObj = data!!.getSerializableExtra("lastObject") as MovieEntity
+            Log.e("FINALLY FROM VIEW GET @@@@@@ ", "YOOOOOOOO \n " + fromOnlyViewObj.toString())
             for (i in 0 until listGlobal.size) {
-                if (listGlobal[i].title == fuckObj.title) {
-                    listGlobal[i] = fuckObj
+                if (listGlobal[i].title == fromOnlyViewObj.title) {
+                    listGlobal[i] = fromOnlyViewObj
                 }
             }
-            Log.e("GLOBAL FUCK DOG ARRAY", "OOTOTOT \n " + listGlobal[0])
+            Log.e("GLOBAL ARRRAYY UPDATED VIEW", "OOTOTOT \n " + listGlobal[0])
         }
     } //end of onActivityResult
 
