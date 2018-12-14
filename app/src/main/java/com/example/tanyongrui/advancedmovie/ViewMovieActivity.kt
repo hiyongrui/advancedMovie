@@ -76,7 +76,7 @@ class ViewMovieActivity : AppCompatActivity() {
             setResult(111,sendMainIntent)
             finish() //back to add activity, which will finish() to main activity page
         }
-        
+
         return super.onOptionsItemSelected(item)
     }
 

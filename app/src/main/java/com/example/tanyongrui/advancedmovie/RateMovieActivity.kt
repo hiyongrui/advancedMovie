@@ -20,6 +20,8 @@ class RateMovieActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true) //code for back button to display, or use manifest
 
+        val retrieveRateMovieObj = intent.getSerializableExtra("rateMovieObj") as MovieEntity
+        enterReviewText.append(retrieveRateMovieObj.title)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
