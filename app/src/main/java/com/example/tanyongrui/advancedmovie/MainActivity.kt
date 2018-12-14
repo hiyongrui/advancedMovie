@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     //var listGlobal = mutableListOf<Persons>()
     var listGlobal = mutableListOf<MovieEntity>()
     var titleToChange = ""
+    var editMovieObj = MovieEntity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,8 +85,16 @@ class MainActivity : AppCompatActivity() {
         Log.e("array person --- ", "==========  " + personArray)
         listViewOfMovies.adapter = newAdapter
         */
-
-    }
+        listViewOfMovies.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            var item = listGlobal[position]
+            Log.e("clicked list item --> ", "item value \n" + item.toString())
+            var startViewIntent = Intent(this, ViewMovieActivity::class.java);
+            startViewIntent.putExtra("callThisShit", item)
+            //startActivityForResult(startViewIntent, 10);
+            startActivityForResult(startViewIntent, 3)
+            Toast.makeText(this,"hi " + item.title, Toast.LENGTH_LONG).show()
+        }
+    } //end of OnCreate()
 
 
     //once add popup text is press, function logic below
@@ -115,6 +124,7 @@ class MainActivity : AppCompatActivity() {
         Log.e("from main activity passing over edit object...", "editing@@@@@@@@@@")
         return super.onContextItemSelected(item)
     }
+
 
     //long press, the add text will display
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -157,7 +167,7 @@ class MainActivity : AppCompatActivity() {
             val backOBJ = data!!.getSerializableExtra("backToMain") as MovieEntity
             Log.e("1st screen data from view movie... ",
                 "data passed back from last screen@@@@ \n" + backOBJ.toString())
-
+            //editMovieObj = backOBJ
             //TODO 666: once added movie object, add object to array to display on adapter
             // TODO 999: other than movie object, need image? have to use custom adapter, or override methods... hardest
 
@@ -203,6 +213,22 @@ class MainActivity : AppCompatActivity() {
             val adapter = MyListAdapter(this, R.layout.my_list_item, listGlobal) //params = context, layout id, list of data
             // maps the array of object to the custom adapter list view
             listView.adapter = adapter
+        }
+        if (requestCode == 837 && resultCode == 908) {
+            Log.e("837 908", "COMING BACK LIST ITEM ");
+            var viewUpdated = intent.getSerializableExtra("okObject") as MovieEntity
+            Log.e("view updated -- " , "--- \n" + viewUpdated.toString())
+        }
+
+        if (resultCode == 111) {
+            val fuckObj = data!!.getSerializableExtra("lastObject") as MovieEntity
+            Log.e("gFUCK UR MOTHE@@@@@@ ", "YOOOOOOOO \n " + fuckObj.toString())
+            for (i in 0 until listGlobal.size) {
+                if (listGlobal[i].title == fuckObj.title) {
+                    listGlobal[i] = fuckObj
+                }
+            }
+            Log.e("GLOBAL FUCK DOG ARRAY", "OOTOTOT \n " + listGlobal[0])
         }
     } //end of onActivityResult
 

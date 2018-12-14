@@ -31,6 +31,7 @@ class EditMovieActivity : AppCompatActivity() {
         }
 
         val receivedEditMovieObj = intent.getSerializableExtra("editMovieObj") as MovieEntity
+        Log.e("received edit movie obj in edit page = " , "edit = \n" + receivedEditMovieObj.toString())
         editNameOfMovie.setText(receivedEditMovieObj.title)
         editDescription.setText(receivedEditMovieObj.overview)
         editReleaseDate.setText(receivedEditMovieObj.releaseDate)

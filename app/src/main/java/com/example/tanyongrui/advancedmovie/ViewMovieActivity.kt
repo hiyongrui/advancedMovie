@@ -52,15 +52,15 @@ class ViewMovieActivity : AppCompatActivity() {
         Log.e("release date", releaseDateText.text.toString())
         Log.e("suitable age", suitableAgeText.text.toString())
 
+
+        if (receivedMovieObj.reviewNoOfStars != "") {
+            ratingStarsNotVisible.visibility = View.VISIBLE
+            ratingStarsNotVisible.rating = receivedMovieObj.reviewNoOfStars.toFloat()
+            reviewText.text = receivedMovieObj.reviewDescription
+        }
+
     } //end of onCreate()
 
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.edit_menu, menu) //inflate the edit_menu.xml from menu directory
-
-        return super.onCreateOptionsMenu(menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
@@ -76,15 +76,7 @@ class ViewMovieActivity : AppCompatActivity() {
             setResult(111,sendMainIntent)
             finish() //back to add activity, which will finish() to main activity page
         }
-
-        if (item?.itemId == R.id.edit) {
-            val editMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity
-            val editIntent = Intent(this, EditMovieActivity::class.java)
-            editIntent.putExtra("editMovieObj", editMovieObj)
-            startActivityForResult(editIntent, 888)
-            Log.e("starting edit intent passing over edit object...", "editing-----------------")
-        }
-
+        
         return super.onOptionsItemSelected(item)
     }
 
@@ -121,8 +113,10 @@ class ViewMovieActivity : AppCompatActivity() {
             ratingStarsNotVisible.visibility = View.VISIBLE
             ratingStarsNotVisible.rating = rateMovieObj.reviewNoOfStars.toFloat()
             reviewText.text = rateMovieObj.reviewDescription
-
-            Log.e("rating stars movie object received", rateMovieObj.toString())
+            receivedMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity
+            receivedMovieObj = rateMovieObj
+            Log.e("rating stars movie object received in view movie page", rateMovieObj.toString())
+            Log.e("HELLO WORLD fuck ", receivedMovieObj.toString())
 
         }
 
