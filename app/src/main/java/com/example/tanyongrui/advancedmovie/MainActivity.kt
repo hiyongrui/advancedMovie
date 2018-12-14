@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             var startViewIntent = Intent(this, ViewMovieActivity::class.java);
             startViewIntent.putExtra("callThisShit", item)
             //startActivityForResult(startViewIntent, 10);
-            startActivityForResult(startViewIntent, 3)
+            startActivity(startViewIntent)
             Toast.makeText(this,"hi " + item.title, Toast.LENGTH_LONG).show()
         }
     } //end of OnCreate()

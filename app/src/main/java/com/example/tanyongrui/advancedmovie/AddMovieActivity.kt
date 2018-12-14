@@ -10,8 +10,14 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_movie.*
+import android.app.DatePickerDialog
+import android.widget.DatePicker
+import android.widget.EditText
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddMovieActivity : AppCompatActivity() {
+    val myCalendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +38,33 @@ class AddMovieActivity : AppCompatActivity() {
             }
         }
 
+
+        val date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, monthOfYear)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLabel()
+        }
+
+        releaseDate.setOnClickListener {
+
+            DatePickerDialog(
+                this@AddMovieActivity, date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
+
     } //end of override fun create method
+
+    private fun updateLabel() {
+        val myFormat = "MM/dd/yy" //In which you need put here
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+        releaseDate.setText(sdf.format(myCalendar.getTime()))
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 

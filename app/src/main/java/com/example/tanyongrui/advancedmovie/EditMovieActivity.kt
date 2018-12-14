@@ -1,5 +1,6 @@
 package com.example.tanyongrui.advancedmovie
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,9 +9,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioButton
+import kotlinx.android.synthetic.main.activity_add_movie.*
 import kotlinx.android.synthetic.main.activity_edit_movie.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EditMovieActivity : AppCompatActivity() {
+
+    val myCalendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +76,30 @@ class EditMovieActivity : AppCompatActivity() {
         Log.e("received edit movie object language radio button", receivedEditMovieObj.language)
         Log.e("received checkbox suitable age edits --> ", receivedEditMovieObj.suitableAge)
 
+        val date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, monthOfYear)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLabel()
+        }
+
+        editReleaseDate.setOnClickListener {
+            // TODO Auto-generated method stub
+            DatePickerDialog(
+                this@EditMovieActivity, date, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
+    } //end of onCreate()
+
+    private fun updateLabel() {
+        val myFormat = "MM/dd/yy" //In which you need put here
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+        editReleaseDate.setText(sdf.format(myCalendar.getTime()))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
