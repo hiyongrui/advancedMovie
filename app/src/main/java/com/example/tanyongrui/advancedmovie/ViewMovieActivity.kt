@@ -55,6 +55,7 @@ class ViewMovieActivity : AppCompatActivity() {
 
         if (receivedMovieObj.reviewNoOfStars != "") {
             ratingStarsNotVisible.visibility = View.VISIBLE
+            ratingStarsNotVisible.setIsIndicator(true)
             ratingStarsNotVisible.rating = receivedMovieObj.reviewNoOfStars.toFloat()
             reviewText.text = receivedMovieObj.reviewDescription
         }
@@ -98,7 +99,9 @@ class ViewMovieActivity : AppCompatActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         if (v?.id == R.id.reviewText) {
-            menu?.add(1,1001,1,"Add Review")
+            if (ratingStarsNotVisible.rating == 0.0f) {
+                menu?.add(1, 1001, 1, "Add Review")
+            }
         }
     }
 
@@ -111,6 +114,7 @@ class ViewMovieActivity : AppCompatActivity() {
             Log.e("inside 999 and 666", "inside@@@@@@@@@@")
             val rateMovieObj = data!!.getSerializableExtra("doneRateMovieObj") as MovieEntity
             ratingStarsNotVisible.visibility = View.VISIBLE
+            ratingStarsNotVisible.setIsIndicator(true)
             ratingStarsNotVisible.rating = rateMovieObj.reviewNoOfStars.toFloat()
             reviewText.text = rateMovieObj.reviewDescription
             receivedMovieObj = intent.getSerializableExtra("callThisShit") as MovieEntity
