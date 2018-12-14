@@ -23,6 +23,8 @@
             android:hint="Share your view on the show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lines="4"
+            android:gravity="top|left"
     />
 
 </LinearLayout>

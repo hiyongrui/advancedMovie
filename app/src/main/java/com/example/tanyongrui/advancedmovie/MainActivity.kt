@@ -214,7 +214,7 @@ class MainActivity : AppCompatActivity() {
             // maps the array of object to the custom adapter list view
             listView.adapter = adapter
         }
-        
+
         if (resultCode == 111) {
             val fromOnlyViewObj = data!!.getSerializableExtra("lastObject") as MovieEntity
             Log.e("FINALLY FROM VIEW GET @@@@@@ ", "YOOOOOOOO \n " + fromOnlyViewObj.toString())
